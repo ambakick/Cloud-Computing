@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Circles</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+	<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEmfQwhkTBq_5UMJ2ijnM_c72vvHPav70">
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  
+    <script>
+      // This example creates circles on the map, representing populations in North
+      // America.
+
+      // First, create an object containing LatLng and population for each city.
+      var citymap = {
+        Mumbai: {
+		  //center: new google.maps.LatLng(18.960, 72.820),
+		  name: 'Mumbai',
+          center: {lat: 18.960, lng: 72.820},
+          population: 12622500
+        },
+        Dilli: {
+		  //center: new google.maps.LatLng(28.670, 77.210), 
+		  name: 'Delhi',
+          center: {lat: 28.670, lng: 77.210},
+          population: 10400900
+        },
+        Kochi: {
+		  //center: new google.maps.LatLng(10.020, 76.22),
+		  name: 'Kochi',		  
+          center: {lat: 10.020, lng: 76.22},
+          population: 631900
+        },
+        Thiruvananthapuram: {
+		  //center: new google.maps.LatLng(8.510, 76.950), 
+		  name: 'Thiruvananthapuram',
+          center: {lat: 8.510, lng: 76.950},
+          population: 789000
+        }
+      };
+
+      function initMap() {
+        // Create the map.
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: {lat: 28.09, lng:  78.712},
+          mapTypeId: 'terrain'
+        });
+         var contents = '<div id="content">'+    
+  '<div id="siteNotice">'+    
+  '</div>'+    
+  '<h1 id="firstHeading" class="firstHeading">Infowindow</h1>'+    
+  '</div>'; 
+        // Construct the circle for each value in citymap.
+        // Note: We scale the area of the circle based on the population. 
+        //var cityCircle=new Array(5);
+        //var infoWindow =new Array(5);		
+		var cityCircle1;
+        var i=0;
+		
+        for (var city in citymap) {
+          // Add the circle for this city to the map.
+            var cityCircle = new google.maps.Circle({
+            strokeColor: '#0000FF',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#0000FF',
+            fillOpacity: 0.35,
+            map: map,
+            center: citymap[city].center,
+			      clickable: true,
+            radius: Math.sqrt(citymap[city].population) * 100
+            
+          });
+          //
+          console.log(city);
+          /**
+          google.maps.event.addListener(cityCircle[i], 'click', function(ev) {
+            //return function(){
+		        infoWindow1.setContent('<div><strong>' + citymap[city].name + '</strong><br>' +
+            'Population: ' + citymap[city].population + '<br></div>');
+            infoWindow1.setPosition(citymap[city].center);
+            infoWindow1.open(map);
+        //}
+        });
+      //}
+      **/
+      /**
+      google.maps.event.addListener(cityCircle[i],'click', (function(cityCircle[i],citymap,infowindow){ 
+      return function() {
+        infowindow.setContent('<div><strong>' + citymap[city].name + '</strong><br>' +
+            'Population: ' + citymap[city].population + '<br></div>');
+            infowindow.setPosition(citymap[city].center);
+            infowindow.open(map);
+    };
+    
+})(cityCircle[i],citymap,infowindow));  **/
+		//infoWindow[i]=infoWindow1;
+          //google.maps.event.addListener(cityCircle[i], 'click', function(event) {alert("population = "+citymap[city].population);});
+          var infowindow = new google.maps.InfoWindow();
+
+		google.maps.event.addListener(cityCircle, 'click', (function(cityCircle, city) {
+			return function() {
+				infowindow.setContent('<div><strong>' + citymap[city].name + '</strong><br>' +
+            'Population: ' + citymap[city].population + '<br></div>');
+            infowindow.setPosition(citymap[city].center);
+            infowindow.open(map);
+			}
+		}) (cityCircle, city));
+        console.log(cityCircle);
+      }
+    }
+      google.maps.event.addDomListener(window, 'load', initMap);
+    </script>
+    
+  </body>
+</html>
