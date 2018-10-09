@@ -1,0 +1,25 @@
+{
+  "name": "weatherapi",
+  "version": "1.0.0",
+  "description": "To get the weather data from Open API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ambakick/Cloud-Computing.git"
+  },
+  "author": "ambakick",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ambakick/Cloud-Computing/issues"
+  },
+  "homepage": "https://github.com/ambakick/Cloud-Computing#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "request": "^2.88.0"
+  }
+}
