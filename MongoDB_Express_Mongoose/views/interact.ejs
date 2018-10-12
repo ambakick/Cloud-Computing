@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>CRUD MongoDB</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <form method="POST">
+    
+     <input type = "text" name = "fn" class="question"  required autocomplete="off" required  ><label for="nme"><span>First Name</span></label>
+     <input type = "text" name = "ln" class="question"   autocomplete="off"  ><label for="nme"><span>Last Name </span></label>
+     <input type = "date" name = "enroll" class="question"  autocomplete="off"   ><label for="nme"><span></span></label>
+    <button type = "submit" value = "add_data" formaction = "add" class="btn btn-primary">Insert</button>
+    <button type = "submit" value = "update_data" formaction = "update" class="btn btn-success">Update</button>
+    <button type = "submit" value = "delete_data" formaction = "delete" class="btn btn-info">Delete</button>
+    <button value = "find_data" formaction = "find" class="btn btn-warning">Find</button>
+    </form>
+    <h2> <%= mess %> </h2>
+   
+    <h2> <%= fname %> </h2>
+    <h2> <%= lname %> </h2>
+    <h2> <%= en %> </h2>
+</body>
+</html>
